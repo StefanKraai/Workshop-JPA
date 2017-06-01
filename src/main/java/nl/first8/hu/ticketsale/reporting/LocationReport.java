@@ -16,7 +16,7 @@ import java.util.List;
 @AllArgsConstructor
 public class LocationReport implements Serializable {
 
-    private Artist artist;
+    private String artist;
     private String concertLocations;
     private String ticketCity;
 }
