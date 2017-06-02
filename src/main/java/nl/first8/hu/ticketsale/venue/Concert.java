@@ -7,6 +7,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Date;
+
 @Entity
 @Data
 @NoArgsConstructor
@@ -24,5 +26,19 @@ public class Concert implements Serializable {
     @ManyToOne(cascade = {CascadeType.ALL})
     @JoinColumn(name = "artist_id", referencedColumnName = "id")
     private Artist artist;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date concertDate;
+
+    public Concert(Long id,String locationName, String artistName, Genre genre, Date concertDate){
+        this.id = id;
+        Location location = new Location();
+        location.setName(locationName);
+        this.location = location;
+        Artist artist = new Artist();
+        artist.setGenre(genre);
+        artist.setName(artistName);
+        this.artist = artist;
+    }
 
 }
